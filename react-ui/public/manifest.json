@@ -1,0 +1,30 @@
+{
+  "short_name": "Hello Template",
+  "name": "Template React Application",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo-vertical-340w.png",
+      "type": "image/png",
+      "sizes": "340x193"
+    },
+    {
+      "src": "logo-vertical-410w.png",
+      "type": "image/png",
+      "sizes": "410x232"
+    },
+    {
+      "src": "logo-vertical-480w.png",
+      "type": "image/png",
+      "sizes": "480x272"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
