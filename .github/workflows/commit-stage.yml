@@ -1,0 +1,26 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.2
+      - run: npm ci
+        working-directory: react-ui
+      - run: npm run lint
+        working-directory: react-ui
+      - run: npm test
+        working-directory: react-ui
+        env:
+          CI: true
+      - run: npm run build
+        working-directory: react-ui
