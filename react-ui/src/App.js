@@ -5,8 +5,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="/logo-vertical-410w.png" className="App-logo" alt="logo" />
-        Hello World!
+        <img src="/logo-vertical-340w.png" className="App-logo" alt="logo" />
+          <h3>Hello World!</h3>
       </header>
     </div>
   );

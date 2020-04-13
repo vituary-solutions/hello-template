@@ -14,13 +14,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.16.2
-      - run: npm ci
-        working-directory: react-ui
-      - run: npm run lint
-        working-directory: react-ui
-      - run: npm test
+      - name: Test and Build Node.js Application
         working-directory: react-ui
         env:
           CI: true
-      - run: npm run build
-        working-directory: react-ui
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Deploy Node.js Application to Google Cloud Storage
+        uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+          CLI: gsutil
+        with:
+          args: rsync -R react-ui/build gs://${{ secrets.GCP_BUCKET }}
