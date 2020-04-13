@@ -23,7 +23,7 @@ jobs:
           npm test
           npm run build
       - name: Deploy Node.js Application to Google Cloud Storage
-        uses: actions-hub/gcloud@286.0.0
+        uses: actions-hub/gcloud@master
         env:
           PROJECT_ID: ${{ secrets.GCP_PROJECT }}
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
