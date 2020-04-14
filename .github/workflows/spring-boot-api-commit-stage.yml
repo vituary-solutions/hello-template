@@ -15,8 +15,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 14
-      - uses: eskatos/gradle-command-action@v1
-          with:
-            arguments: test bootJar
-            build-root-directory: spring-boot-api
-            gradle-version: 6.3
+      - name: Test and Build Applicaion
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: test bootJar
+          build-root-directory: spring-boot-api
+          gradle-version: 6.3

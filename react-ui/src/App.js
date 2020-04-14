@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
+import {getGreetingName} from './service/hello-service'
 import './App.css';
 
 function App() {
   const [name, setName] = useState('Guest');
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_HELLO_API}/hello`)
-      .then(res => res.json())
+    getGreetingName()
       .then(
         (result) => {
-          setName(result.name)
+          setName(result)
         },
         (error) => {
           console.error("Failed to load from API!", error)
