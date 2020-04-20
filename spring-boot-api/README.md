@@ -17,7 +17,7 @@ If you use another method to run the application, ensure `spring-boot-api` is th
 
 Launches the tests
 
-### `./gradlew test bootJar`
+### `./gradlew bootJar`
 
 Builds the app for production to the `build/libs` folder.
 

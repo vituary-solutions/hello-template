@@ -19,7 +19,7 @@ jobs:
         working-directory: react-ui
         env:
           CI: true
-          REACT_APP_HELLO_API: https://hello-api.vituary.com
+          REACT_APP_HELLO_API: https://${{ secrets.API_HOSTNAME }}
         run: |
           npm ci
           npm test

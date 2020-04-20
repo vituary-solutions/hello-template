@@ -18,6 +18,20 @@ jobs:
       - name: Test and Build Applicaion
         uses: eskatos/gradle-command-action@v1
         with:
-          arguments: test bootJar
+          arguments: test
           build-root-directory: spring-boot-api
           gradle-version: 6.3
+      - name: Build and push the image with Cloud Build
+        uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        with:
+          args: builds submit --tag gcr.io/${{ secrets.GCP_PROJECT }}/hello-api
+      - name: Deploy to Google Cloud Run
+        uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        with:
+          args: run deploy hello-api --image gcr.io/${{ secrets.GCP_PROJECT }}/hello-api --platform managed --region ${{ secrets.GCP_REGION }} --port 8080 --allow-unauthenticated --set-env-vars CORS_ALLOWED_ORIGINS=http://${{ secrets.GCP_BUCKET }}
