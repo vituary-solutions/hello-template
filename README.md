@@ -36,11 +36,17 @@ These secrets are required in the GitHub repository for use in the workflows:
 
 The Google Cloud service account will require some IAM permissions:
 
-| Key | Description |
+| Permission | Description |
 | --- | ----------- |
 | Cloud Storage: Storage Object Admin | Allows addition and removal of files from the [Cloud Storage](https://cloud.google.com/storage) bucket. |
 | Cloud Run: Cloud Run Admin | Allows deployment of containers to [Cloud Run](https://cloud.google.com/run). |
 | Cloud Build: Cloud Build Service Account | Allows use of [Cloud Build](https://cloud.google.com/cloud-build) to build API images and push them to [Container Registry](https://cloud.google.com/container-registry). |
+| Cloud Build: Cloud Build Editor | Needed to access the Cloud Build logs as described in [Missing permissions on cloud container builder role](https://github.com/GoogleCloudPlatform/cloud-builders/issues/120#issuecomment-329831523). |
+| Project: Viewer | Needed to access the Cloud Build logs as described in [Missing permissions on cloud container builder role](https://github.com/GoogleCloudPlatform/cloud-builders/issues/120#issuecomment-329831523). |
+
+Additionally, the Compute Engine default service user (_project-id_-compute@developer.gserviceaccount.com) will need the ability to run as the service account used in the
+GitHub Actions. See [Cloud Run IAM Roles](https://cloud.google.com/run/docs/reference/iam/roles#additional-configuration)
+for details.
 
 ### DNS
 
