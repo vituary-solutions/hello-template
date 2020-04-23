@@ -20,6 +20,9 @@ See [Spring Boot API](./spring-boot-api/README.md) for details.
 This project leverages [GitHub Actions](https://github.com/features/actions) and
 [Google Cloud](https://cloud.google.com/) for builds and deployments.
 
+Additionally, [Auth0](https://auth0.com/) is used for authentication. A target application on the Auth0 platform must
+be created and configured in GitHub Secrets as a pre-requisite.
+
 ### GitHub Secrets
 
 These secrets are required in the GitHub repository for use in the workflows:
@@ -31,6 +34,8 @@ These secrets are required in the GitHub repository for use in the workflows:
 | GCP_REGION | The Google Cloud Region to deploy where the application will be deployed. Currently, it assumes only a single region. |
 | GCP_BUCKET | The name of the Cloud Storage bucket **and** hostname for the static content. See [Hosting a static website](https://cloud.google.com/storage/docs/hosting-static-website) for details. |
 | API_HOSTNAME | The fully qualified domain name for the API. |
+| AUTH0_CLIENT_ID | The client id of the Auth0 application. |
+| AUTH0_DOMAIN | The fully qualified domain name hosted by Auth0. |
 
 ### IAM Permissions
 
