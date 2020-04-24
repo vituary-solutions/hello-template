@@ -34,4 +34,4 @@ jobs:
           PROJECT_ID: ${{ secrets.GCP_PROJECT }}
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         with:
-          args: run deploy hello-api --image gcr.io/${{ secrets.GCP_PROJECT }}/hello-api --platform managed --region ${{ secrets.GCP_REGION }} --port 8080 --allow-unauthenticated --set-env-vars CORS_ALLOWED_ORIGINS=http://${{ secrets.GCP_BUCKET }}
+          args: run deploy hello-api --image gcr.io/${{ secrets.GCP_PROJECT }}/hello-api --platform managed --region ${{ secrets.GCP_REGION }} --port 8080 --allow-unauthenticated --set-env-vars CORS_ALLOWED_ORIGINS=https://${{ secrets.UI_HOSTNAME }}

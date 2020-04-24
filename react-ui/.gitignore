@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 
+# Firebase alias file. This may be checked in on a private repository.
+.firebaserc
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

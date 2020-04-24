@@ -26,11 +26,8 @@ jobs:
           npm ci
           npm test
           npm run build
-      - name: Deploy Node.js Application to Google Cloud Storage
-        uses: actions-hub/gcloud@master
+      - name: Deploy Node.js Application to Firebase
+        working-directory: react-ui
         env:
-          PROJECT_ID: ${{ secrets.GCP_PROJECT }}
-          APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-          CLI: gsutil
-        with:
-          args: rsync -R react-ui/build gs://${{ secrets.GCP_BUCKET }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: npx firebase-tools deploy --project ${{ secrets.GCP_PROJECT }}

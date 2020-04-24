@@ -1,5 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment Variables
+
+The project requires some environment variables to run correctly. A `.env` file is provided for a quick reference and
+default values for some of them. For local development, a `.env.local` file should be added to the project `react-ui`
+folder to override those values.
+
+| Environment Variable | Default | Description |
+| -------------------- | ------- | ----------- |
+| REACT_APP_HELLO_API | http://localhost:8080 | The location of the API used by the web application. |
+| REACT_APP_AUTH0_CLIENT_ID |  | The client id of an Auth0 application. Used for authentication. |
+| REACT_APP_AUTH0_DOMAIN |  | The fully qualified domain name hosted by Auth0. Used for authentication. |
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -66,3 +78,18 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Firebase Setup
+
+As an alternative, the application can be run locally with a Firebase emulator. In this case, the local build artifacts
+are used, so you must run `npm run build` for changes to take effect.
+
+1. Install [Firebase CLI](https://firebase.google.com/docs/cli): `npm install -g firebase-tools`
+1. Login to Firebase: `firebase login`
+1. Set the default project alias: `firebase use --add`
+   -  It will prompt for an alias (use `default`) and project
+
+### Run locally with Firebase
+
+1. Build the application: `npm run build`
+1. Start the application: `firebase serve --port 3000`

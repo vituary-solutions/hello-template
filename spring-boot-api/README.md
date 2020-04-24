@@ -8,14 +8,15 @@ In the project directory, you can run:
 
 ### `./gradlew bootRun`
 
-Runs the app in the development mode. Open [http://localhost:8080/hello](http://localhost:8080/hello) to call the API
-in a browser.
+Runs the app in the development mode. Use a tool like [Postman](https://www.postman.com/) to
+[`GET http://localhost:8080/hello`](http://localhost:8080/hello).
 
-If you use another method to run the application, ensure `spring-boot-api` is the working directory.
+If you use another method to run the application, ensure `spring-boot-api` is the working directory so that local
+configuration is used.
 
 ### `./gradlew test`
 
-Launches the tests
+Runs the tests.
 
 ### `./gradlew bootJar`
 

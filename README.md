@@ -17,8 +17,8 @@ See [Spring Boot API](./spring-boot-api/README.md) for details.
 
 ## Deployment Pipeline Pre-requisites
 
-This project leverages [GitHub Actions](https://github.com/features/actions) and
-[Google Cloud](https://cloud.google.com/) for builds and deployments.
+This project leverages [GitHub Actions](https://github.com/features/actions), [Google Cloud](https://cloud.google.com/)
+and [Firebase](https://firebase.google.com/) for builds and deployments.
 
 Additionally, [Auth0](https://auth0.com/) is used for authentication. A target application on the Auth0 platform must
 be created and configured in GitHub Secrets as a pre-requisite.
@@ -32,7 +32,8 @@ These secrets are required in the GitHub repository for use in the workflows:
 | GCP_PROJECT | The globally unique Google Cloud project id where the application will be deployed. |
 | GCP_CREDENTIALS | This should be a service account key. See [Creating and managing service account keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) for details. |
 | GCP_REGION | The Google Cloud Region to deploy where the application will be deployed. Currently, it assumes only a single region. |
-| GCP_BUCKET | The name of the Cloud Storage bucket **and** hostname for the static content. See [Hosting a static website](https://cloud.google.com/storage/docs/hosting-static-website) for details. |
+| FIREBASE_TOKEN | A Firebase Auth token used to interact with firebase. See [Use the Firebase CLI with CI systems](https://firebase.google.com/docs/cli?authuser=0#cli-ci-systems). |
+| UI_HOSTNAME | The fully qualified domain name for the web based front end. |
 | API_HOSTNAME | The fully qualified domain name for the API. |
 | AUTH0_CLIENT_ID | The client id of the Auth0 application. |
 | AUTH0_DOMAIN | The fully qualified domain name hosted by Auth0. |
@@ -59,7 +60,7 @@ As the project is setup for deployment, `CNAME` entries are needed in DNS for ea
 
 | Purpose | Name | Data |
 | ------- | - | - |
-| Static Content in Cloud Storage | `www.example.com` | `c.storage.googleapis.com` |
+| Static Content hosted by Firebase | `www.example.com` | `TODO` |
 | API in Cloud Run | `api.example.com` | `ghs.googlehosted.com` |
 
 In the case of the API, custom domains for Cloud Run are in beta and cannot be configured until after the service is 
