@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
 import { Auth0Provider } from "./react-auth0-spa";
 import * as serviceWorker from './serviceWorker';
@@ -8,6 +9,7 @@ import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
+    <CssBaseline />
     <Auth0Provider>
       <App />
     </Auth0Provider>,
