@@ -27,8 +27,15 @@ function NavBar() {
   const classes = useStyles();
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
-  const authAction = isAuthenticated ? logout : loginWithRedirect;
   const authText = isAuthenticated ? "Logout" : "Login"
+  const authAction = () => {
+    if (isAuthenticated) {
+      logout({returnTo: window.location.origin})
+    }
+    else {
+      loginWithRedirect({})
+    }
+  }
 
   return (
     <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
@@ -40,7 +47,7 @@ function NavBar() {
               <Button color="inherit" component={Link} to="/profile" className={useStyles.link}>Profile</Button>
             </nav> : ""
         }
-        <Button color="primary" variant="outlined" onClick={() => authAction({})} className={useStyles.link}>
+        <Button color="primary" variant="outlined" onClick={() => authAction()} className={useStyles.link}>
           {authText}
         </Button>
       </Toolbar>
