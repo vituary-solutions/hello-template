@@ -37,6 +37,7 @@ These secrets are required in the GitHub repository for use in the workflows:
 | API_HOSTNAME | The fully qualified domain name for the API. |
 | AUTH0_CLIENT_ID | The client id of the Auth0 application. |
 | AUTH0_DOMAIN | The fully qualified domain name hosted by Auth0. |
+| AUTH0_AUDIENCE | The audience value of an Auth0 API. |
 
 ### IAM Permissions
 

@@ -2,6 +2,25 @@
 
 This project is built with [Spring Boot](https://spring.io/projects/spring-boot).
 
+## Configuration
+
+The project requires some configured values to run correctly. An `application.yml` file is provided for a quick
+reference and default values for some of them. For local development, Spring Boot has the `default` profile enabled by
+default, so an `application-default.yml` can be added to the `spring-boot-api` folder to provide those settings.
+Alternatively, environment variables may also be used for these settings.
+
+See [Externalized Configuration](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config)
+for complete details on configuring Spring Boot.
+
+| Property | Environment Variable | Default | Description |
+| -------- | -------------------- | ------- | ----------- |
+| `cors.allowed.origins` | `CORS_ALLOWED_ORIGINS` | http://localhost:3000 | A comma separated list of allowed origins for CORS. |
+| `auth0.audience` | `AUTH0_AUDIENCE` | | The audience value an Auth0 API. |
+| `spring.security.oauth2.resourceserver.jwt.issuer-uri` | `SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI` | | The issuer of the JWT. |
+
+For details on configuring the audience and issuer see
+[Configure the Sample Project](https://auth0.com/docs/quickstart/backend/java-spring-security5/01-authorization#configure-the-sample-project).
+
 ## Available Scripts
 
 In the project directory, you can run:

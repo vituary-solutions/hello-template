@@ -5,6 +5,7 @@ import history from "./utils/history";
 const AUTH0_CONFIG = {
   domain: process.env.REACT_APP_AUTH0_DOMAIN,
   client_id: process.env.REACT_APP_AUTH0_CLIENT_ID,
+  audience: process.env.REACT_APP_AUTH0_AUDIENCE,
   cacheLocation: "localstorage",
   redirect_uri: window.location.origin
 }

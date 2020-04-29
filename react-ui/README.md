@@ -11,6 +11,7 @@ folder to override those values.
 | REACT_APP_HELLO_API | http://localhost:8080 | The location of the API used by the web application. |
 | REACT_APP_AUTH0_CLIENT_ID |  | The client id of an Auth0 application. Used for authentication. |
 | REACT_APP_AUTH0_DOMAIN |  | The fully qualified domain name hosted by Auth0. Used for authentication. |
+| REACT_APP_AUTH0_AUDIENCE |  | The audience value an Auth0 API. |
 
 ## Available Scripts
 
