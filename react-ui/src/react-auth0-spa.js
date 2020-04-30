@@ -25,7 +25,7 @@ export const Auth0Provider = ({children}) => {
   const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState();
   const [auth0Client, setAuth0] = useState();
-  const [loading, setLoading] = useState(true);
+  const [authLoading, setAuthLoading] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export const Auth0Provider = ({children}) => {
         setUser(user);
       }
 
-      setLoading(false);
+      setAuthLoading(false);
     };
     initAuth0();
     // eslint-disable-next-line
@@ -69,10 +69,10 @@ export const Auth0Provider = ({children}) => {
   };
 
   const handleRedirectCallback = async () => {
-    setLoading(true);
+    setAuthLoading(true);
     await auth0Client.handleRedirectCallback();
     const user = await auth0Client.getUser();
-    setLoading(false);
+    setAuthLoading(false);
     setIsAuthenticated(true);
     setUser(user);
   };
@@ -81,7 +81,7 @@ export const Auth0Provider = ({children}) => {
       value={{
         isAuthenticated,
         user,
-        loading,
+        authLoading,
         popupOpen,
         loginWithPopup,
         handleRedirectCallback,

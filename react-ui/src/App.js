@@ -2,30 +2,40 @@ import React from 'react';
 import { Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
 import history from "./utils/history";
 import { useAuth0 } from "./react-auth0-spa";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-import './App.css';
+const useStyles = makeStyles((theme) => ({
+  app: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh'
+  },
+  content: {
+    display: 'flex',
+    flex: '1 1 auto',
+  }
+}));
 
 function App() {
-  const { loading } = useAuth0();
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const { authLoading } = useAuth0()
+  const classes = useStyles()
 
   return (
-    <div className="App">
+    <div className={classes.app}>
       <Router history={history}>
         <NavBar />
-        <div className="App-header">
-          <img src="/logo-vertical-340w.png" className="App-logo" alt="logo" />
+        <div className={classes.content}>
+          { !authLoading ?
+              <Switch>
+                <Route path="/" exact component={Dashboard}/>
+                <PrivateRoute path="/profile" component={Profile}/>
+              </Switch> : ""
+          }
         </div>
-        <Switch>
-          <Route path="/" exact />
-          <PrivateRoute path="/profile" component={Profile} />
-        </Switch>
       </Router>
     </div>
   );
