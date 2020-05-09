@@ -24,7 +24,7 @@ jobs:
       - name: Store GCP Credentials
         env:
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-        run |
+        run: |
           mkdir $HOME/secrets
           cat <<< $APPLICATION_CREDENTIALS > $HOME/secrets/gcp_credentials.json
       - name: Start a Cloud SQL Proxy
