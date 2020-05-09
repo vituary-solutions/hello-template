@@ -23,6 +23,16 @@ and [Firebase](https://firebase.google.com/) for builds and deployments.
 Additionally, [Auth0](https://auth0.com/) is used for authentication. A target application on the Auth0 platform must
 be created and configured in GitHub Secrets as a pre-requisite.
 
+### Cloud SQL
+
+This template project uses [Cloud SQL](https://cloud.google.com/sql) to host a [PostreSQL](https://www.postgresql.org/)
+instance for the cloud hosted app deployment. An alternative location may also be configured.
+
+In order to use the GitHub Action workflows, the database instance must already exist and the following steps must be
+completed:
+- Enable the [Cloud SQL Admin API](https://cloud.google.com/sql/docs/postgres/admin-api/)
+- Ensure the service account has [access to the database](https://console.cloud.google.com/iam-admin/iam)
+
 ### GitHub Secrets
 
 These secrets are required in the GitHub repository for use in the workflows:
@@ -48,6 +58,7 @@ The Google Cloud service account will require some IAM permissions:
 | Cloud Run: Cloud Run Admin | Allows deployment of containers to [Cloud Run](https://cloud.google.com/run). |
 | Cloud Build: Cloud Build Service Account | Allows use of [Cloud Build](https://cloud.google.com/cloud-build) to build API images and push them to [Container Registry](https://cloud.google.com/container-registry). |
 | Cloud Build: Cloud Build Editor | Needed to access the Cloud Build logs as described in [Missing permissions on cloud container builder role](https://github.com/GoogleCloudPlatform/cloud-builders/issues/120#issuecomment-329831523). |
+| Cloud SQL: Cloud SQL Client | Allow connections to Cloud SQL databases. |
 | Project: Viewer | Needed to access the Cloud Build logs as described in [Missing permissions on cloud container builder role](https://github.com/GoogleCloudPlatform/cloud-builders/issues/120#issuecomment-329831523). |
 
 Additionally, the Compute Engine default service user (_project-id_-compute@developer.gserviceaccount.com) will need the

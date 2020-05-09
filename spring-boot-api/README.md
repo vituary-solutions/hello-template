@@ -17,6 +17,12 @@ for complete details on configuring Spring Boot.
 | `cors.allowed.origins` | `CORS_ALLOWED_ORIGINS` | http://localhost:3000 | A comma separated list of allowed origins for CORS. |
 | `auth0.audience` | `AUTH0_AUDIENCE` | | The audience value an Auth0 API. |
 | `spring.security.oauth2.resourceserver.jwt.issuer-uri` | `SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI` | | The issuer of the JWT. |
+| `spring.datasource.url` | `SPRING_DATASOURCE_URL` | `jdbc:postgresql://localhost:5432/hello` | The URL of the target database. |
+| `spring.datasource.username` | `SPRING_DATASOURCE_USERNAME` | `hello_user` | The audience value an Auth0 API. |
+| `spring.datasource.password` | `SPRING_DATASOURCE_PASSWORD` | `hello_pw` | The issuer of the JWT. |
+
+The default database configuration assumes the PostgreSQL database defined in
+[Docker Compose](../database/docker-compose.yml) is being used.
 
 For details on configuring the audience and issuer see
 [Configure the Sample Project](https://auth0.com/docs/quickstart/backend/java-spring-security5/01-authorization#configure-the-sample-project).

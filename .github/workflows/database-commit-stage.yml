@@ -1,0 +1,46 @@
+name: Database Migrations
+
+on:
+  push:
+    branches: [master]
+    paths: ['spring-boot-api/**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14
+      - name: Execute Tests
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: test --no-daemon
+          build-root-directory: database
+          gradle-version: 6.3
+      - name: Store GCP Credentials
+        env:
+          APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        run |
+        mkdir $HOME/secrets
+        cat <<< $APPLICATION_CREDENTIALS > $HOME/secrets/gcp_credentials.json
+      - name: Start a Cloud SQL Proxy
+        env:
+          SQL_INSTANCE: ${{ secrets.GCP_SQL_CONNECTION_NAME }}
+        run: |
+          docker run -d -v $HOME/secrets/gcp_credentials.json:/creds.json -p 127.0.0.1:5432:5432 \
+              -e GOOGLE_APPLICATION_CREDENTIALS=/creds.json gcr.io/cloudsql-docker/gce-proxy:1.16 /cloud_sql_proxy \
+              -instances=$SQL_INSTANCE=tcp:0.0.0.0:5432 \
+      - name: Run the migrations
+        uses: eskatos/gradle-command-action@v1
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/${{ secrets.GCP_SQL_DATABASE }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.GCP_SQL_USER }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.GCP_SQL_PASSWORD }}
+        with:
+          arguments: bootRun --no-daemon
+          build-root-directory: database
+          gradle-version: 6.3

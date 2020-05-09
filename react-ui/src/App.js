@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./components/Dashboard";
 import Profile from "./components/Profile";
+import TeamList from "./components/TeamList";
 import history from "./utils/history";
 import { useAuth0 } from "./react-auth0-spa";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -33,6 +34,7 @@ function App() {
               <Switch>
                 <Route path="/" exact component={Dashboard}/>
                 <PrivateRoute path="/profile" component={Profile}/>
+                <PrivateRoute path="/teams" component={TeamList}/>
               </Switch> : ""
           }
         </div>

@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from "react";
-import {getGreetingName} from "../service/hello-service";
-import {useAuth0} from "../react-auth0-spa";
+import {useAppContext} from "../context/application-context";
 
 export default function Greeting() {
   const [name, setName] = useState("Guest");
-  const { isAuthenticated, getTokenSilently } = useAuth0();
+  const { isAuthConfigured, helloService } = useAppContext()
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthConfigured) {
       return
     }
 
     const fetchToken = async () => {
-      const token = await getTokenSilently();
       try {
-        const nameResult = await getGreetingName(token)
+        const nameResult = await helloService.getGreetingName()
         setName(nameResult)
       }
       catch (error) {
@@ -22,7 +20,7 @@ export default function Greeting() {
       }
     }
     fetchToken()
-  },[isAuthenticated, getTokenSilently]);
+  },[isAuthConfigured]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <React.Fragment>Hello {name}!</React.Fragment>

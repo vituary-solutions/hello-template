@@ -52,6 +52,7 @@ function NavBar() {
             <nav>
               <Button color="inherit" component={Link} to="/" className={useStyles.link}>Home</Button>
               <Button color="inherit" component={Link} to="/profile" className={useStyles.link}>Profile</Button>
+              <Button color="inherit" component={Link} to="/teams" className={useStyles.link}>Teams</Button>
             </nav> : ""
         }
         { !authLoading ?

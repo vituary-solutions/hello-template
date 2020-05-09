@@ -4,12 +4,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
 import { Auth0Provider } from "./react-auth0-spa";
 import * as serviceWorker from './serviceWorker';
+import {AppContextProvider} from "./context/application-context";
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
     <Auth0Provider>
-      <App />
+      <AppContextProvider>
+        <App />
+      </AppContextProvider>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')

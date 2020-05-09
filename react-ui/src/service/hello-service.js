@@ -10,3 +10,13 @@ export async function getGreetingName(authToken) {
   const json = await response.json()
   return json.name
 }
+
+export default class HelloService {
+  constructor(authToken) {
+    this.authToken = authToken
+  }
+
+  async getGreetingName() {
+    return await getGreetingName(this.authToken)
+  }
+}

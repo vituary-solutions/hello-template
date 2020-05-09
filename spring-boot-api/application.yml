@@ -2,6 +2,12 @@ cors:
   allowed:
     origins: http://localhost:3000
 
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hello
+    username: hello_user
+    password: hello_pw
+
 # This project uses Auth0 (https://auth0.com/) for authentication. These properties are needed to validate JWT tokens.
 # The can be specified them in a application-default.yml file:
 # - auth0.audience
