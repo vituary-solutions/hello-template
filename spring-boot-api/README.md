@@ -46,5 +46,3 @@ Runs the tests.
 ### `./gradlew bootJar`
 
 Builds the app for production to the `build/libs` folder.
-
-Your app is ready to be deployed!
