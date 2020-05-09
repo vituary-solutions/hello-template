@@ -16,7 +16,7 @@ The file supports environment variables, which can be override with a `.env` fil
 ## Migration Configuration
 
 The database migration application requires some configured values to run correctly. An `application.yml` file is
-provided for a quick reference and includes default values for working with the default docker-compose settings. For
+available for a quick reference and includes default values for working with the default docker-compose settings. For
 local development, Spring Boot has the `default` profile enabled by default, so an `application-default.yml` can be
 added to the `database` folder to override the values for those settings. Alternatively, environment variables may also
 be used to override settings.

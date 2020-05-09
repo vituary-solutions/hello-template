@@ -4,7 +4,7 @@ This project is built with [Spring Boot](https://spring.io/projects/spring-boot)
 
 ## Configuration
 
-The project requires some configured values to run correctly. An `application.yml` file is provided for a quick
+The project requires some configured values to run correctly. An `application.yml` file is available for a quick
 reference and default values for some of them. For local development, Spring Boot has the `default` profile enabled by
 default, so an `application-default.yml` can be added to the `spring-boot-api` folder to provide those settings.
 Alternatively, environment variables may also be used for these settings.
