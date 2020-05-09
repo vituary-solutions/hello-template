@@ -27,11 +27,11 @@ jobs:
           PROJECT_ID: ${{ secrets.GCP_PROJECT }}
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         with:
-          args: builds submit spring-boot-api --tag gcr.io/${{ secrets.GCP_PROJECT }}/hello-api
+          args: builds submit spring-boot-api --tag gcr.io/${{ secrets.GCP_PROJECT }}/hello-api:${{ env.GITHUB_RUN_NUMBER }}
       - name: Deploy to Google Cloud Run
         uses: actions-hub/gcloud@master
         env:
           PROJECT_ID: ${{ secrets.GCP_PROJECT }}
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         with:
-          args: run deploy hello-api --image gcr.io/${{ secrets.GCP_PROJECT }}/hello-api --platform managed --region ${{ secrets.GCP_REGION }} --port 8080 --allow-unauthenticated --set-env-vars ^@^CORS_ALLOWED_ORIGINS=https://${{ secrets.UI_HOSTNAME }}@AUTH0_AUDIENCE=${{ secrets.AUTH0_AUDIENCE }}@SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://${{ secrets.AUTH0_DOMAIN }}/@SPRING_DATASOURCE_URL=jdbc:postgresql:///${{ secrets.GCP_SQL_DATABASE }}?cloudSqlInstance=${{ secrets.GCP_SQL_CONNECTION_NAME }}&socketFactory=com.google.cloud.sql.postgres.SocketFactory@SPRING_DATASOURCE_USERNAME=${{ secrets.GCP_SQL_USER }}@SPRING_DATASOURCE_PASSWORD=${{ secrets.GCP_SQL_PASSWORD }}
+          args: run deploy hello-api --image gcr.io/${{ secrets.GCP_PROJECT }}/hello-api:${{ env.GITHUB_RUN_NUMBER }} --platform managed --region ${{ secrets.GCP_REGION }} --port 8080 --allow-unauthenticated --set-env-vars ^@^CORS_ALLOWED_ORIGINS=https://${{ secrets.UI_HOSTNAME }}@AUTH0_AUDIENCE=${{ secrets.AUTH0_AUDIENCE }}@SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI=https://${{ secrets.AUTH0_DOMAIN }}/@SPRING_DATASOURCE_URL=jdbc:postgresql:///${{ secrets.GCP_SQL_DATABASE }}?cloudSqlInstance=${{ secrets.GCP_SQL_CONNECTION_NAME }}&socketFactory=com.google.cloud.sql.postgres.SocketFactory@SPRING_DATASOURCE_USERNAME=${{ secrets.GCP_SQL_USER }}@SPRING_DATASOURCE_PASSWORD=${{ secrets.GCP_SQL_PASSWORD }}
