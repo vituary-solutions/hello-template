@@ -3,7 +3,7 @@ name: Database Migrations
 on:
   push:
     branches: [master]
-    paths: ['spring-boot-api/**']
+    paths: ['database/**']
 
 jobs:
   build:
@@ -25,8 +25,8 @@ jobs:
         env:
           APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run |
-        mkdir $HOME/secrets
-        cat <<< $APPLICATION_CREDENTIALS > $HOME/secrets/gcp_credentials.json
+          mkdir $HOME/secrets
+          cat <<< $APPLICATION_CREDENTIALS > $HOME/secrets/gcp_credentials.json
       - name: Start a Cloud SQL Proxy
         env:
           SQL_INSTANCE: ${{ secrets.GCP_SQL_CONNECTION_NAME }}
